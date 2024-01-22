@@ -1,1 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorenzo Personal Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --grey: #F0F3F7;
+            --purple: #6333cc;
+            --purple200: #A880FF;
+        }
+
+        body {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .URLloader {
+            aspect-ratio: 16 / 9;
+            min-width: 250px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 100%;
+            background-color: var(--grey);
+            margin: 2rem;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            border-radius: 0.5rem;
+        }
+
+        .URLloader span::before {
+            content: "";
+            position: absolute;
+            top: 2.5%;
+            bottom: 2.5%;
+            left: 1.5%;
+            width: 97%;
+            height: 0.5rem;
+            background: var(--purple200);
+            animation: y 2s ease-in-out infinite alternate;
+            border-radius: 0.25rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: -webkit-fill-available;
+            margin: 1rem;
+            max-width: 3rem;
+        }
+
+        .URLloader p {
+            color: var(--purple);
+            position: absolute;
+            bottom: -3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: sans-serif;
+            text-transform: uppercase;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes y {
+            to {
+                transform: translateY(-97.5%);
+                top: 97.5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="URLloader">
+        <p>Ciao. Nothing to see in here 🤠</p>
+        <em></em>
+        <span></span>
+
+        <svg width="474" height="512" viewBox="0 0 474 512" fill="none" xmlns="http://www.w3.org/2000/svg"
+            class="logo animate-pulse">
+            <g clip-path="url(#clip0_1526_9764)">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M194.463 430.726V146.281L129.642 170.662L109.386 207.234V479.488L194.463 430.726Z"
+                    fill="url(#paint0_radial_1526_9764)" />
+                <path
+                    d="M186.36 154.413L206.617 158.476C206.617 168.635 206.617 178.794 206.617 190.984V195.048V446.984L121.54 499.809L109.386 491.682V463.238L121.54 471.365L186.36 430.73V195.048V190.984C186.612 177.796 186.36 166.603 186.36 154.413ZM465.898 119.873L471.975 130.032L388.924 170.667C384.891 171.248 380.407 170.142 376.77 170.667V150.349C376.658 150.36 376.885 150.338 376.77 150.349H380.822L439.565 121.905C403.104 65.0158 356.514 32.5079 324.104 24.3809V-6.10352e-05C382.771 15.8398 427.411 60.9523 465.898 119.873Z"
+                    fill="#1D1D23" />
+                <path
+                    d="M24.3072 511.994H-0.000488281V247.867C-0.000488281 131.139 76.3577 40.6284 198.512 40.6284C284.158 40.6284 350.472 85.0485 388.923 166.597V170.66L279.538 223.486C260.858 182.283 236.357 166.597 198.512 166.597C150.471 166.597 122.495 193.027 121.538 243.803V247.867V499.803L101.282 511.994V483.549V247.867V243.803C102.481 180.181 138.157 142.216 198.512 142.216C238.012 142.216 266.43 157.845 287.641 190.978L356.512 158.47C321.346 96.1865 267.507 65.716 198.512 65.0094C94.5492 65.0094 25.6709 136.648 24.3072 243.803V247.867V511.994Z"
+                    fill="#1D1D23" />
+            </g>
+            <defs>
+                <radialGradient id="paint0_radial_1526_9764" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(109.386 154.215) rotate(79.2732) scale(339.132 108.658)">
+                    <stop stop-color="#8953FF" />
+                    <stop offset="1" stop-color="#6333CC" />
+                </radialGradient>
+                <clipPath id="clip0_1526_9764">
+                    <rect width="474" height="512" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    </div>
+
+</body>
+
+</html>
