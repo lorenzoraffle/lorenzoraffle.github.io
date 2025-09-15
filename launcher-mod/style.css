@@ -1,0 +1,302 @@
+:root {
+  --Neutral600: #1d1d1d;
+  --Neutral550: #33333c;
+  --Neutral500: #555464;
+  --Neutral450: #78778d;
+  --Neutral400: #99a5b9;
+  --Neutral350: #c0cadb;
+  --Neutral300: #d6dce7;
+  --Neutral250: #dfe5ef;
+  --Neutral200: #e8edf5;
+  --Neutral150: #eff3f9;
+  --Neutral100: #fafcff;
+  --Neutral50: #fafbfc;
+  --Neutral00: #ffffff;
+
+  --Blue400: #233889;
+  --Blue300: #2346dd;
+  --Blue200: #2d5cf2;
+  --Blue100: #65a0fd;
+
+  --Gradient100B: rgba(232, 237, 245, 0);
+  --Gradient100A: rgba(232, 237, 245, 1);
+
+  --bg: #0b0c10;
+  --panel: #15171d;
+  --ink: var(--Neutral00);
+  --muted: #98a2b3;
+  --brand: var(--Blue200);
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --radius: 12px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--Neutral00);
+  background-color: #0a0a0a;
+}
+
+a {
+  color: #8ab4ff;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 80px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+header h1 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+header .tag {
+  padding: 6px 10px;
+  border: 1px solid #2b2f3a;
+  background: #11131a;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid #232633;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 0 #00000066, 0 20px 60px #00000033 inset;
+  overflow: hidden;
+  width: 100%;
+}
+
+#config {
+  min-width: 600px;
+  width: 600px;
+}
+
+.card header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #232633;
+  background: linear-gradient(180deg, #181b25, #141720);
+}
+
+.card header h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #d6dbe4;
+}
+
+.card .body {
+  padding: 16px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.fields .full {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="url"],
+select {
+  background: #0f1117;
+  color: var(--ink);
+  border: 1px solid #2b2f3a;
+  border-radius: 8px;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+input[type="text"]::placeholder,
+input[type="url"]::placeholder {
+  color: #6b7280;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+}
+
+.code {
+  background: #0f1117;
+  border: 1px solid #2b2f3a;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  overflow: auto;
+  line-height: 1.45;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row .btns {
+  display: flex;
+  gap: 8px;
+}
+
+button.primary {
+  padding: 0.5rem 1rem;
+  background-color: var(--Neutral150);
+  color: var(--Neutral600);
+  transition: background-color 0.2s ease;
+  border: 1px solid var(--Neutral300);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  font-size: 14px;
+  text-wrap: nowrap;
+}
+
+button.primary p {
+  margin: 0;
+}
+
+button.primary:hover {
+  background-color: var(--Neutral100);
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid #2b2f3a;
+  color: var(--ink);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #232633;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #232633;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.table th {
+  background: #171a22;
+  color: #d6dbe4;
+  position: sticky;
+  top: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Demo preview of the launcher button (structure matches the selectors used by launcher-preview.js) */
+.demo-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: #0f1117;
+  border: 1px dashed #2b2f3a;
+  border-radius: 12px;
+}
+
+[data-testid="raffle-search-launcher-button"] {
+  position: relative;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  right: 15px;
+  height: 56px;
+  min-width: 56px;
+  width: unset !important;
+  margin: 0 !important;
+  z-index: 2147483646;
+  padding: 0 1.5rem;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #2d5cf2;
+  border-color: #2d5cf2;
+  box-shadow: 0px 10px 5px rgb(0 0 0 / 10%);
+  transition-property: box-shadow, background-color, border-radius, transform;
+  transition-duration: 140ms;
+  transition-timing-function: ease-in-out;
+}
+[data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+  display: inline-block;
+  width: 31px;
+  text-align: center;
+  transform: translateY(2px);
+}
+
+[data-testid="raffle-search-launcher-button"] .button-label p {
+  margin: 0;
+  margin-right: 16px;
+  font-weight: bold;
+}

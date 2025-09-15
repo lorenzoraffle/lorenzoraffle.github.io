@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raffle Launcher — Theme Playground & Docs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Raffle Launcher — MOD</h1>
+            <span class="tag">v1</span>
+        </header>
+
+        <div class="flex-horizontal">
+            <!-- CONFIGURATOR ------------------------------------------------------>
+            <section class="card" id="config">
+                <header>
+                    <h3>Live Configurator</h3>
+                </header>
+                <div class="body">
+                    <div class="fields">
+                        <label>
+                            <span>Radius</span>
+                            <select id="radius">
+                                <option value="" selected>Default</option>
+                                <option value="squared">squared</option>
+                                <option value="sm">sm</option>
+                                <option value="md">md</option>
+                                <option value="lg">lg</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Icon size</span>
+                            <select id="icon">
+                                <option value="" selected>Default</option>
+                                <option value="none">none</option>
+                                <option value="sm">sm</option>
+                                <option value="md">md</option>
+                                <option value="xl">xl</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Badge</span>
+                            <select id="badge">
+                                <option value="" selected>none</option>
+                                <option value="green">green</option>
+                                <option value="red">red</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Custom icon URL</span>
+                            <input id="substituteIcon" type="url" placeholder="https://cdn.yoursite.com/icon.svg" />
+                        </label>
+
+                        <label class="full">
+                            <span class="check"><input id="hideLabel" type="checkbox" /> Hide text label</span>
+                        </label>
+
+                        <div class="full">
+                            <h4 style="margin:6px 0 0 0;color:#d6dbe4;">Mobile-only</h4>
+                        </div>
+
+                        <label>
+                            <span>Mobile icon size</span>
+                            <select id="mobileIcon">
+                                <option value="">Default</option>
+                                <option value="none">none</option>
+                                <option value="sm">sm</option>
+                                <option value="md">md</option>
+                                <option value="xl">xl</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Mobile right offset</span>
+                            <input id="mobileRight" type="text" placeholder="e.g. 16px" />
+                        </label>
+
+                        <label>
+                            <span>Mobile bottom offset</span>
+                            <input id="mobileBottom" type="text" placeholder="e.g. 16px" />
+                        </label>
+
+                        <label class="full">
+                            <span class="check"><input id="mobileHideLabel" type="checkbox" /> Hide label on
+                                mobile</span>
+                        </label>
+                    </div>
+
+                    <div class="row" style="margin-top:14px;">
+                        <div class="btns">
+                            <button class="primary" id="apply">Apply to Preview</button>
+                            <button class="ghost" id="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="flex-vertical">
+                <!-- PREVIEW & SNIPPET ------------------------------------------------->
+                <section class="card">
+                    <header>
+                        <h3>Live Preview</h3>
+                    </header>
+                    <div class="body">
+                        <div class="demo-shell">
+                            <!-- A simple structural mock so launcher-preview.js styles can target it -->
+                            <button data-testid="raffle-search-launcher-button" id="demoButton">
+                                <span class="button-label">
+                                    <p>Ask a question</p>
+                                </span>
+
+                                <svg class="raffle-search--inactive" xmlns="http://www.w3.org/2000/svg" width="auto"
+                                    height="auto" viewBox="0 0 63 53" fill="#FFFFFF">
+                                    <path
+                                        d="M54.026 0c3.12 0 4.252.325 5.393.935a6.36 6.36 0 012.646 2.646c.61 1.14.935 2.272.935 5.393v24.052c0 3.12-.325 4.252-.935 5.393a6.36 6.36 0 01-2.646 2.646c-1.14.61-2.272.935-5.393.935H24l-13.515 9.721a2 2 0 01-3.168-1.623V42c-1.426 0-2.714-.338-3.798-.946A6.688 6.688 0 01.946 38.48C.338 37.397 0 36.11 0 34.683V8.973c0-3.12.325-4.251.935-5.392A6.36 6.36 0 013.581.935C4.721.325 5.853 0 8.974 0h45.052zM29.481 29a2.36 2.36 0 00-1.756.744A2.455 2.455 0 0027 31.52c0 .687.242 1.272.725 1.756a2.391 2.391 0 001.756.725c.687 0 1.279-.242 1.775-.725A2.36 2.36 0 0032 31.519c0-.687-.248-1.279-.744-1.775A2.423 2.423 0 0029.48 29zm.555-21c-1.77 0-3.284.401-4.545 1.203-1.26.803-2.158 1.75-2.691 2.845a7.73 7.73 0 00-.8 3.428c0 .547.05 1.043.152 1.49l.066.26 3.527.438c-.17-.462-.254-1.057-.254-1.787 0-1.264.388-2.358 1.164-3.282.775-.924 1.903-1.386 3.381-1.386 1.382 0 2.449.401 3.2 1.204.752.802 1.128 1.787 1.128 2.954 0 1.423-.573 2.565-1.72 3.425l-.208.148-1.6 1.095c-2.012 1.361-3.018 3.257-3.018 5.689 0 .479.01.86.027 1.143l.01.133h3.2a6.996 6.996 0 01-.037-.693c0-1.51.473-2.633 1.417-3.368l.183-.133 1.673-1.13C36.764 19.998 38 17.883 38 15.33c0-1.97-.721-3.683-2.164-5.142C34.394 8.73 32.461 8 30.036 8z">
+                                    </path>
+                                </svg>
+
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <header>
+                        <h3>Copy-paste snippet</h3>
+                    </header>
+                    <div class="body">
+                        <div class="code" id="snippet"></div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="btns">
+                                <button class="primary" id="copy">Copy snippet</button>
+                            </div>
+                            <span class="muted" id="copied" style="opacity:.0;">Copied!</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- PARAMS REFERENCE ---------------------------------------------------->
+        <section class="card" style="margin-top:22px;">
+            <header>
+                <h3>Parameters Reference</h3>
+            </header>
+            <div class="body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type / Values</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>data-radius</code></td>
+                            <td><span class="muted">"squared" | "sm" | "md" | "lg"</span></td>
+                            <td>Corner roundness of the launcher button.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-hide-label</code></td>
+                            <td><span class="muted">"true"</span></td>
+                            <td>Hide the text label (any truthy value like <code>"true"</code> or <code>"1"</code>
+                                works).</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-icon</code></td>
+                            <td><span class="muted">"none" | "sm" | "md" | "xl"</span></td>
+                            <td>Controls size/visibility of the default icon.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-badge</code></td>
+                            <td><span class="muted">"green" | "red"</span></td>
+                            <td>Shows a pulsing badge (maps legacy values: <code>active→green</code>,
+                                <code>notification→red</code>).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>data-substitute-icon</code></td>
+                            <td><span class="muted">URL</span></td>
+                            <td>Replaces the default icon with your custom image (SVG/PNG/etc.).</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><strong>Mobile-only overrides</strong></td>
+                        </tr>
+                        <tr>
+                            <td><code>data-mobile-icon</code></td>
+                            <td><span class="muted">"none" | "sm" | "md" | "xl"</span></td>
+                            <td>Icon size on small screens (≤500px).</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-mobile-right</code></td>
+                            <td><span class="muted">CSS length</span></td>
+                            <td>Right offset of the launcher on small screens.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-mobile-bottom</code></td>
+                            <td><span class="muted">CSS length</span></td>
+                            <td>Bottom offset of the launcher on small screens.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-mobile-hide-label</code></td>
+                            <td><span class="muted">"true"</span></td>
+                            <td>Hide the text label on small screens.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="muted" style="margin-top:12px;">You can also pass the same parameters via query string (e.g.
+                    <code>?badge=green&icon=md</code>), but using <code>data-*</code> attributes is recommended.
+                </p>
+            </div>
+        </section>
+
+        <!-- QUICK START --------------------------------------------------------->
+        <section class="card" style="margin-top:22px;">
+            <header>
+                <h3>Quick Start</h3>
+            </header>
+            <div class="body">
+                <ol>
+                    <li>Add the Raffle SDK snippet to your <code>&lt;head&gt;</code> (already included above).</li>
+                    <li>Copy the script tag generated by the configurator and paste it anywhere after the SDK or near
+                        the end of <code>&lt;head&gt;</code>.</li>
+                    <li>Tweak parameters later by editing the <code>data-*</code> attributes.</li>
+                </ol>
+            </div>
+        </section>
+    </div>
+
+    <!-- We dynamically (re)inject launcher-preview.js with selected data-* so the IIFE re-applies styles -->
+    <script src="script.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+/* Launcher Button custom styling */
+
+/* --------------- Always Apply ---------------- */
+
+/* ensure font in label is not overwritten */
+[data-testid="raffle-search-launcher-button"] p {
+  font-size: 14px !important;
+  text-transform: none !important;
+}
+
+/* --------------- Border Radius ---------------- */
+
+/* squared */
+[data-testid="raffle-search-launcher-button"] {
+  border-radius: 6px !important;
+}
+
+/* sm radius */
+[data-testid="raffle-search-launcher-button"] {
+  border-radius: 12px !important;
+}
+
+/* md radius */
+[data-testid="raffle-search-launcher-button"] {
+  border-radius: 16px !important;
+}
+
+/* lg radius */
+[data-testid="raffle-search-launcher-button"] {
+  border-radius: 24px !important;
+}
+
+/* --------------- Font Label ---------------- */
+
+/* remove label */
+[data-testid="raffle-search-launcher-button"] .button-label {
+  display: none !important;
+}
+
+/* --------------- Icon Size ---------------- */
+
+/* none */
+[data-testid="raffle-search-launcher-button"] .button-label {
+  margin-right: 0 !important;
+}
+[data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+  display: none !important;
+}
+
+/* sm */
+[data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+  transform: translateY(1px) !important;
+  width: 18px !important;
+}
+[data-testid="raffle-search-launcher-button"]::after {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* md */
+[data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+  transform: translateY(1px) !important;
+  width: 21px !important;
+}
+[data-testid="raffle-search-launcher-button"]::after {
+  width: 21px !important;
+  height: 21px !important;
+}
+
+/* xl */
+[data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+  transform: translateY(1px) !important;
+  width: 28px !important;
+}
+[data-testid="raffle-search-launcher-button"]::after {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+/* --------------- Active Icon ---------------- */
+
+[data-testid="raffle-search-launcher-button"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: rgb(125, 209, 0);
+  border: 3px solid white;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  transition: opacity 0.25s ease;
+
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+[data-testid="raffle-search-launcher-button"]:has(
+    .raffle-search--active
+  )::before,
+[data-testid="raffle-search-launcher-button"]:not(:has(p))::before {
+  opacity: 0;
+  animation: none;
+  pointer-events: none;
+}
+
+/* --------------- Notification Icon ---------------- */
+
+[data-testid="raffle-search-launcher-button"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: rgb(209, 0, 0);
+  border: 3px solid white;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  transition: opacity 0.25s ease;
+
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+[data-testid="raffle-search-launcher-button"]:has(
+    .raffle-search--active
+  )::before,
+[data-testid="raffle-search-launcher-button"]:not(:has(p))::before {
+  opacity: 0;
+  animation: none;
+  pointer-events: none;
+}
+
+/* --------------- Substitute icon ---------------- */
+
+[data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+  display: none;
+}
+
+[data-testid="raffle-search-launcher-button"]::after {
+  content: "";
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: url(icon-1.svg) no-repeat center / contain;
+  pointer-events: none;
+}
+
+[data-testid="raffle-search-launcher-button"]:has(
+    .raffle-search--active
+  )::after {
+  opacity: 0;
+  animation: none;
+  pointer-events: none;
+}
+
+/* --------------- MOBILE SETTINGS ---------------- */
+
+@media only screen and (max-width: 500px) {
+  /* --------------- Font Label ---------------- */
+
+  /* remove label */
+  [data-testid="raffle-search-launcher-button"] .button-label {
+    display: none !important;
+  }
+  [data-testid="raffle-search-launcher-button"] {
+    padding: 0 !important;
+    justify-content: center;
+  }
+
+  /* --------------- Icon Size ---------------- */
+
+  /* sm */
+  [data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+    transform: translateY(1px) !important;
+    width: 18px !important;
+  }
+  [data-testid="raffle-search-launcher-button"]::after {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* md */
+  [data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+    transform: translateY(1px) !important;
+    width: 21px !important;
+  }
+  [data-testid="raffle-search-launcher-button"]::after {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  /* xl */
+  [data-testid="raffle-search-launcher-button"] .raffle-search--inactive {
+    transform: translateY(1px) !important;
+    width: 28px !important;
+  }
+  [data-testid="raffle-search-launcher-button"]::after {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* --------------- Positioning ---------------- */
+
+  /* change right */
+  [data-testid="raffle-search-launcher-button"] {
+    right: 16px !important;
+  }
+
+  /* change bottom */
+  [data-testid="raffle-search-launcher-button"] {
+    bottom: 16px !important;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(50%, -50%) scale(1.3);
+    opacity: 1;
+  }
+}

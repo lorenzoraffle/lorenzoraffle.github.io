@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            var el = document.createElement("script");
+            el.setAttribute("src", "https://cdn.raffle.ai/search/index.js");
+            el.setAttribute("id", "raffle-sdk");
+            el.setAttribute("defer", "");
+            el.setAttribute("data-uid", "19d8ca5f-e9d1-43df-acc9-b81dc14759f4");
+            document.head.appendChild(el);
+        })();
+    </script>
+
+    <style>
+        :root {
+            font-family: Arial, Helvetica, sans-serif;
+
+            --mx-pro-blue: #2997ff;
+            --mx-max-purple: #a972ff;
+            --mx-teal: #43b9b9;
+            --ai-gradient: linear-gradient(97deg,
+                    #0096ff,
+                    #bb64ff 42%,
+                    #f2416b 74%,
+                    #eb7500);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* Animator wrapper to ensure smooth hide/show even if the SDK applies inline styles */
+        #launcher-animator {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            transform: translateX(160%) !important;
+            opacity: 0 !important;
+            transition: opacity 300ms ease, transform 300ms ease;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+        }
+
+        #launcher-animator.show {
+            transform: translateX(0) !important;
+            opacity: 1 !important;
+        }
+
+        /* Re-enable interaction for the actual button inside the wrapper */
+        #launcher-animator>[data-testid="raffle-search-launcher-button"] {
+            pointer-events: auto;
+        }
+
+        [data-testid="raffle-search-launcher-button"] {
+            opacity: 0;
+            transform: translateX(160%);
+            pointer-events: none;
+            transition: opacity 300ms ease, transform 300ms ease;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+        }
+
+        [data-testid="raffle-search-launcher-button"].show {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        [data-testid="raffle-search-launcher-button"]:has(.raffle-search--active) {
+            opacity: 1 !important;
+            transform: translateX(0) !important;
+            pointer-events: auto;
+
+        }
+
+        /* Hidden state (off-screen to the right) */
+        /* [data-testid="raffle-search-launcher-button"] {
+            opacity: 0;
+            transform: translateX(160%);
+            pointer-events: none;
+            transition: opacity 300ms ease, transform 300ms ease;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+        } */
+
+        /* Visible after scroll */
+        /* [data-testid="raffle-search-launcher-button"].show {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        } */
+    </style>
+
+
+    <script src="https://cdn.raffle.ai/adhoc/launcher-preview.js" data-radius="squared" data-mobile-right="16px"
+        data-mobile-bottom="16px" data-icon="sm" data-badge="green" data-mobile-hide-label="true"> </script>
+
+    <title>Raffle Themes</title>
+
+</head>
+
+<body style="min-height: 10000px;">
+
+
+    <script>
+
+        (function () {
+            var SELECTOR = '[data-testid="raffle-search-launcher-button"]';
+            var THRESHOLD = 1; // show after 1 viewport height
+
+            function getScrollY() {
+                return window.pageYOffset || document.documentElement.scrollTop || 0;
+            }
+
+            function shouldShow() {
+                return getScrollY() >= THRESHOLD * window.innerHeight;
+            }
+
+            function ensureWrapped() {
+                var launcher = document.querySelector(SELECTOR);
+                if (!launcher) return null;
+
+                var wrapper = document.getElementById('launcher-animator');
+                if (wrapper) {
+                    if (launcher.parentElement !== wrapper) {
+                        wrapper.appendChild(launcher);
+                    }
+                    return wrapper;
+                }
+
+                wrapper = document.createElement('div');
+                wrapper.id = 'launcher-animator';
+                wrapper.setAttribute('aria-hidden', 'true');
+                document.body.appendChild(wrapper);
+                wrapper.appendChild(launcher);
+                return wrapper;
+            }
+
+            function updateVisibility() {
+                var launcher = document.querySelector(SELECTOR);
+                if (!launcher) return; // element might not exist yet
+                var wrapper = ensureWrapped();
+                if (!wrapper) return;
+
+                if (shouldShow()) {
+                    wrapper.classList.add('show');
+                    wrapper.setAttribute('aria-hidden', 'false');
+                } else {
+                    wrapper.classList.remove('show');
+                    wrapper.setAttribute('aria-hidden', 'true');
+                }
+            }
+
+            function wireEvents() {
+                window.addEventListener('scroll', updateVisibility, { passive: true });
+                window.addEventListener('resize', updateVisibility);
+                updateVisibility(); // run once immediately
+            }
+
+            function waitForLauncherThenInit() {
+                var launcher = document.querySelector(SELECTOR);
+                if (launcher) {
+                    ensureWrapped();
+                    launcher.classList.add('show');
+                    wireEvents();
+                    return;
+                }
+                // If injected later, observe the DOM until it appears
+                var obs = new MutationObserver(function () {
+                    if (document.querySelector(SELECTOR)) {
+                        obs.disconnect();
+                        ensureWrapped();
+                        launcher = document.querySelector(SELECTOR);
+                        if (launcher) launcher.classList.add('show');
+                        wireEvents();
+                    }
+                });
+                obs.observe(document.documentElement, { childList: true, subtree: true });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', waitForLauncherThenInit);
+            } else {
+                waitForLauncherThenInit();
+            }
+        })();
+    </script>
+
+</body>
+
+</html>
