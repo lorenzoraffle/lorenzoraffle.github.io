@@ -11,6 +11,23 @@ const controls = [
   "mobileHideLabel",
 ];
 
+function buildGlobalConfig() {
+  const cfg = {};
+  controls.forEach((k) => {
+    const el = $(k);
+    if (!el) return;
+    let val;
+    if (el.type === "checkbox") {
+      if (el.checked) val = "true"; // launcher expects stringy truthy
+      else val = "";
+    } else {
+      val = (el.value || "").trim();
+    }
+    if (val) cfg[k] = val; // keep camelCase keys as used by GLOBAL fallback
+  });
+  return cfg;
+}
+
 function buildAttributes() {
   const attrs = {};
   controls.forEach((k) => {
@@ -45,10 +62,11 @@ function attrsToRawString(attrs) {
 }
 
 function renderSnippet() {
-  const attrs = buildAttributes();
-  const html = `&lt;script src="https://cdn.raffle.ai/adhoc/launcher-preview.js"${attrsToString(
-    attrs
-  )}&gt;&lt;/script&gt;`;
+  const cfg = buildGlobalConfig();
+  const entries = Object.entries(cfg)
+    .map(([k, v]) => `    ${k}: ${JSON.stringify(v)}`)
+    .join(",\n");
+  const html = `&lt;script&gt;\n  window.RAFFLE_LAUNCHER_MOD = {\n${entries}\n  };\n&lt;/script&gt;\n&lt;script src="https://cdn.raffle.ai/adhoc/launcherMod.js"&gt;&lt;/script&gt;`;
   $("snippet").innerHTML = html;
 }
 
@@ -56,19 +74,28 @@ function applyToPreview() {
   // Remove existing style so launcher-preview can re-inject
   const style = document.getElementById("raffle-launcher-theme");
   if (style) style.remove();
-  // Remove previous injected config script, if any
-  const prev = document.getElementById("config-script");
-  if (prev) prev.remove();
-  // Inject fresh script with chosen data-*
-  const s = document.createElement("script");
-  s.src = "https://cdn.raffle.ai/adhoc/launcher-preview.js";
-  s.id = "config-script";
-  const attrs = buildAttributes();
-  // Use setAttribute so we can keep dash-case data-* names without DOMStringMap camelCase
-  Object.entries(attrs).forEach(([k, v]) => {
-    s.setAttribute(`data-${k}`, v);
-  });
-  document.head.appendChild(s);
+
+  // Remove previous injected scripts, if any
+  const prevGlobal = document.getElementById("config-global");
+  if (prevGlobal) prevGlobal.remove();
+  const prevLoader = document.getElementById("config-loader");
+  if (prevLoader) prevLoader.remove();
+
+  // 1) Inject GLOBAL config first
+  const cfg = buildGlobalConfig();
+  const globalScript = document.createElement("script");
+  globalScript.id = "config-global";
+  const entries = Object.entries(cfg)
+    .map(([k, v]) => `    ${k}: ${JSON.stringify(v)}`)
+    .join(",\n");
+  globalScript.textContent = `window.RAFFLE_LAUNCHER_MOD = {\n${entries}\n};`;
+  document.head.appendChild(globalScript);
+
+  // 2) Then load the external script (use jsDelivr URL for proper MIME)
+  const loader = document.createElement("script");
+  loader.id = "config-loader";
+  loader.src = "https://cdn.raffle.ai/adhoc/launcherMod.js?v=dev";
+  document.head.appendChild(loader);
 }
 
 $("apply").addEventListener("click", () => {
