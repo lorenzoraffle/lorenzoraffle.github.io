@@ -12,7 +12,7 @@
     <div class="wrap">
         <header>
             <h1>Raffle Launcher — MOD</h1>
-            <span class="tag">v1</span>
+            <span class="tag">v1.1</span>
         </header>
 
         <div class="flex-horizontal">
@@ -189,9 +189,7 @@
                             <td><span class="muted">URL</span></td>
                             <td>Replaces the default icon with your custom image (SVG/PNG/etc.).</td>
                         </tr>
-                        <tr>
-                            <td colspan="3"><strong>Mobile-only overrides</strong></td>
-                        </tr>
+                        <tr colspan="3"><strong>Mobile-only overrides</strong></tr>
                         <tr>
                             <td><code>data-mobile-icon</code></td>
                             <td><span class="muted">"none" | "sm" | "md" | "xl"</span></td>
@@ -215,7 +213,8 @@
                     </tbody>
                 </table>
                 <p class="muted" style="margin-top:12px;">You can also pass the same parameters via query string (e.g.
-                    <code>?badge=green&icon=md</code>), but using <code>data-*</code> attributes is recommended.
+                    <code>?badge=green&icon=md</code>), but using a global <code>window.RAFFLE_LAUNCHER_MOD</code>
+                    config is recommended (especially with Google Tag Manager).
                 </p>
             </div>
         </section>
