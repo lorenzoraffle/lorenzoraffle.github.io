@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <title>Preview Main</title>
+
+    <style>
+        :root {
+            --Primary: #11724f;
+            --Secondary: #0a5137;
+            --BG: rgba(17, 114, 79, 0.1);
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--BG);
+
+        }
+
+        /* Container that sizes itself to the image so the page height matches the screenshot height */
+        .mock {
+            position: relative;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            line-height: 0;
+        }
+
+        /* Responsive screenshot: width scales to viewport, height follows to preserve aspect ratio */
+        .mock img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 1440px;
+        }
+
+        /* Widget placement: default (desktop) */
+        #raffle-search {
+            position: absolute;
+            width: 910px;
+            height: 52px;
+            top: 340px;
+            left: 265px;
+        }
+
+
+        .controls {
+            margin-top: 24px;
+            display: flex;
+            gap: 8px;
+            z-index: 1100;
+        }
+
+        .controls button {
+            padding: 12px 16px;
+            background-color: var(--Primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid white;
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: row;
+            transition: background-color 0.2s ease;
+        }
+
+        .controls button:hover {
+            background-color: var(--Secondary);
+        }
+
+
+        /* Landing vs. popup visibility */
+        body.is-landing .mock,
+        body.is-landing #raffle-search,
+        body.is-landing #raffle-overlay-trigger {
+            display: none;
+        }
+
+        body.is-popup .controls,
+        body.is-popup .instructions-wrapper {
+            display: none;
+        }
+
+        .instructions-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 640px;
+            width: calc(100% - 48px);
+
+            z-index: 1100;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            color: #1b1b1b;
+            text-align: left;
+
+            display: flex;
+            flex-direction: column;
+            gap: 0rem;
+        }
+
+        .instructions-wrapper h1 {
+            margin: 0 0 16px 0;
+            font-size: 48px;
+        }
+
+        .instructions-wrapper h2 {
+            margin: 0 0 16px 0;
+            font-size: 24px;
+        }
+
+        .instructions-wrapper h2 span {
+            color: var(--Primary);
+        }
+
+        .instructions-wrapper h3 {
+            margin: 0 0 16px 0;
+            font-size: 16px;
+        }
+
+
+        .instructions {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+
+            text-align: left;
+        }
+
+        .instructions ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .instructions .note {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .instructions-wrapper p {
+            margin: 16px 0px 0 0;
+            text-align: right;
+            font-style: italic;
+            font-size: 16px;
+            color: #555;
+        }
+
+        #raffle-overlay-trigger {
+            position: absolute;
+            top: 90px;
+            right: 16px;
+            padding: 8px 12px;
+            background-color: transparent;
+            color: var(--Primary);
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.2s ease;
+        }
+
+        #raffle-overlay-trigger:hover {
+            background-color: rgba(17, 114, 79, 0.1);
+            color: var(--Primary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mock">
+        <img id="screenshot" src="desktop.png" alt="Homepage mock" />
+
+        <!-- Overlay your widgets relative to the screenshot -->
+        <div id="raffle-search"></div>
+    </div>
+
+    <button title="search button" id="raffle-overlay-trigger"
+        onclick="window.raffleApi.open('6242901f-49ac-4777-99b2-06e3edca3f38')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24px" height="24px" viewBox="0 0 24 24"
+            stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+        </svg>
+    </button>
+    <div class="instructions-wrapper">
+        <h1>Hi Pernille,</h1>
+        <h2>this is the test enviroment for your <span>main page</span>.</h2>
+        <div class="instructions">
+            <h3>How to test our widgets:</h3>
+            <ol>
+                <li>Click <strong>Test Mobile</strong> or <strong>Test Desktop</strong> to open a test window.</li>
+                <li>If your browser blocks the popup, allow popups for this page and click again.</li>
+                <li>In the new window, interact with the page as you would on your site.</li>
+            </ol>
+            <div class="note">The test windows use real viewport sizes (390×800 for mobile, 1440×1000 for desktop) so
+                the
+                widgets behave exactly like production.</div>
+            <div class="controls">
+                <button id="open-mobile" title="mobile view"><i class="fa fa-mobile" aria-hidden="true"></i>Test
+                    Mobile</button>
+                <button id="open-desktop" title="desktop view"><i class="fa fa-desktop" aria-hidden="true"></i>Test
+                    Desktop</button>
+            </div>
+
+        </div>
+        <p>Test the other preview <a href="../sub/">here</a></p>
+
+    </div>
+
+    <script>
+        const screenshot = document.getElementById('screenshot');
+        const search = document.getElementById('raffle-search');
+        const overlayBtn = document.getElementById('raffle-overlay-trigger');
+        const openMobileBtn = document.getElementById('open-mobile');
+        const openDesktopBtn = document.getElementById('open-desktop');
+
+        function loadRaffleSdk() {
+            if (document.getElementById('raffle-sdk')) return;
+            var el = document.createElement('script');
+            el.src = 'https://cdn.raffle.ai/search/index.js';
+            el.id = 'raffle-sdk';
+            el.defer = true;
+            el.setAttribute('data-uid', '1251e2da-9d3a-4e0e-a0e6-30a18b6b5ec6, fbcee4f5-9c14-4742-ab11-c0e9fea4fe07, 6242901f-49ac-4777-99b2-06e3edca3f38');
+            document.head.appendChild(el);
+        }
+
+        function updateViewClasses() {
+            const hash = (location.hash || '').toLowerCase();
+            const popup = hash === '#mobile' || hash === '#desktop';
+            document.body.classList.toggle('is-popup', popup);
+            document.body.classList.toggle('is-landing', !popup);
+        }
+
+        function openDeviceWindow(mode, w, h) {
+            const dualLeft = window.screenLeft ?? window.screenX ?? 0;
+            const dualTop = window.screenTop ?? window.screenY ?? 0;
+            const winW = window.innerWidth || document.documentElement.clientWidth || screen.width;
+            const winH = window.innerHeight || document.documentElement.clientHeight || screen.height;
+            const left = Math.max(0, dualLeft + (winW - w) / 2);
+            const top = Math.max(0, dualTop + (winH - h) / 2);
+            const url = `${location.pathname}${mode === 'mobile' ? '#mobile' : '#desktop'}`;
+            const feat = `width=${w},height=${h},resizable=yes,top=${top},left=${left}`;
+            const popup = window.open(url, `raffle-${mode}`, feat);
+            if (popup) popup.focus();
+        }
+
+        function applyModeFromHash() {
+            updateViewClasses();
+            const isMobile = (location.hash || '').toLowerCase() === '#mobile';
+            const isPopup = (location.hash || '').toLowerCase() === '#mobile' || (location.hash || '').toLowerCase() === '#desktop';
+            if (isPopup) loadRaffleSdk();
+
+            if (isMobile) {
+                // Mobile screenshot and fixed mobile coordinates
+                screenshot.src = 'mobile.png';
+                screenshot.style.maxWidth = '390px';
+
+                // Position search relative to the mobile screenshot
+                search.style.width = '342px';
+                search.style.height = '48px';
+                search.style.top = '185px';
+                search.style.left = '24px';
+
+                // Position the overlay trigger button for mobile
+                overlayBtn.style.top = '12px';
+                overlayBtn.style.right = '70px';
+            } else {
+                // Desktop screenshot and fixed desktop coordinates
+                screenshot.src = 'desktop.png';
+                screenshot.style.maxWidth = '1440px';
+
+                // Desktop search position
+                search.style.width = '910px';
+                search.style.height = '52px';
+                search.style.top = '340px';
+                search.style.left = '265px';
+
+                // Desktop overlay trigger position
+                overlayBtn.style.top = '90px';
+                overlayBtn.style.right = '16px';
+            }
+        }
+
+        // Initialize landing/popup classes and mode once on load
+        updateViewClasses();
+        applyModeFromHash();
+
+        // Also update if user manually edits the hash
+        window.addEventListener('hashchange', applyModeFromHash);
+
+        openMobileBtn.addEventListener('click', () => openDeviceWindow('mobile', 390, 800));
+        openDesktopBtn.addEventListener('click', () => openDeviceWindow('desktop', 1440, 1000));
+
+    </script>
+</body>
+
+</html>
