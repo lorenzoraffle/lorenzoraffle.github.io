@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:6NumokgoALmzORKhGKUqs
+SUMMARY:Raffle: Hvad er nyt og hvad er på vej?
+DTSTAMP:20251007T083510Z
+DTSTART:20251022T080000Z
+DESCRIPTION:Hvad er nyt og hvad er på vej? Raffle product plan for the upco
+	ming months.\nMeeting link: https://meet.google.com/xdo-oivr-hqe
+URL:https://meet.google.com/xdo-oivr-hqe
+LOCATION:Online (https://meet.google.com/xdo-oivr-hqe)
+DURATION:PT0.5H
+END:VEVENT
+END:VCALENDAR
